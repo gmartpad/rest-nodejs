@@ -1,5 +1,6 @@
 const customExpress = require('./config/customExpress')
 const conexao = require('./infraestrutura/conexao');
+const Tabelas = require('./infraestrutura/tabelas');
 
 conexao.connect(erro => {
     
@@ -11,6 +12,8 @@ conexao.connect(erro => {
         
         console.log(`Conexão ao banco de dados realizada com sucesso!`)
         
+        Tabelas.init(conexao);
+
         const app = customExpress();
         
         const port = 3000;
