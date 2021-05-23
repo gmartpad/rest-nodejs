@@ -1,3 +1,5 @@
+const Atendimento = require('../models/atendimentos');
+
 module.exports = app => {
     // Disponibilizando um Hello, World! para requisições GET executadas no endpoint /
     app.get('/atendimentos', (req, res) => {
@@ -6,9 +8,13 @@ module.exports = app => {
 
     app.post('/atendimentos', (req, res) => {
 
-        console.log(req.body);
+        const atendimento = req.body;
 
-        res.send('Você está na rota de atendimentos e está realizando um POST')
+        Atendimento.adiciona(atendimento);
+
+        res.send('Você está na rota de atendimentos e está realizando um POST');
+
+
     })
 
 }
