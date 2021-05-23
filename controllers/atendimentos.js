@@ -1,9 +1,18 @@
+const atendimentos = require('../models/atendimentos');
 const Atendimento = require('../models/atendimentos');
 
 module.exports = app => {
     // Disponibilizando um Hello, World! para requisições GET executadas no endpoint /
     app.get('/atendimentos', (req, res) => {
-        res.send('Você está na rota de atendimentos!')
+        Atendimento.lista(res);
+    })
+
+    app.get('/atendimentos/:id', (req, res) => {
+        const id = parseInt(req.params.id);
+
+        Atendimento.buscaPorId(id, res);
+
+        // res.send('OK');
     })
 
     app.post('/atendimentos', (req, res) => {
